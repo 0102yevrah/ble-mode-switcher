@@ -1,0 +1,11 @@
+App(
+    appid="ble_mode_switcher",
+    name="BLE Mode Switcher",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="ble_mode_switcher_app",
+    stack_size=2 * 1024,
+    requires=["gui"],
+    fap_libs=["ble_profile"],
+    fap_description="Switch Flipper BLE profiles; does not bridge the Wi-Fi Devboard",
+    fap_category="Bluetooth",
+)
