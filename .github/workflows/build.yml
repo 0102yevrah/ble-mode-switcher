@@ -1,0 +1,28 @@
+name: Build BLE Mode Switcher FAP
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out app
+        uses: actions/checkout@v5
+
+      - name: Build FAP with uFBT
+        id: build-app
+        uses: flipperdevices/flipperzero-ufbt-action@v0.1
+        with:
+          sdk-channel: release
+
+      - name: Upload FAP artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: ble-mode-switcher-${{ steps.build-app.outputs.suffix }}
+          path: ${{ steps.build-app.outputs.fap-artifacts }}
